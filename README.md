@@ -1,27 +1,78 @@
-# DatePipePtBr
+# Date Pipe pt-Br
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+Simples projeto de como utilizar um `DatePipe` no **angular 9** com `angular2-moment`.
 
-## Development server
+###
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Primeiramente precisaremos importar o **angular2-moment**:
+```bash
+npm i angular2-moment
+```
 
-## Code scaffolding
+Precisaremos importar os módulos no ***app.modules.ts*** ficando como abaixo:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```ts
+import { MomentModule } from 'angular2-moment';
+import 'moment/locale/pt-br';
+```
+No meu `component` que nesse projeto será o ***datepipe.component.ts*** terá o seguinte código:
 
-## Build
+```ts
+import { Component, OnInit } from '@angular/core';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@Component({
+  selector: 'app-datepipe',
+  templateUrl: './datepipe.component.html',
+  styleUrls: ['./datepipe.component.css']
+})
+export class DatepipeComponent implements OnInit {
 
-## Running unit tests
+  today: Date;
+  hoje: Date;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor() { }
 
-## Running end-to-end tests
+  ngOnInit() {
+    const now = new Date(Date.now());
+    this.today = now;
+    this.hoje = now;
+  }
+}
+```
+E por fim o arquivo ***datepipe.component.html*** ficará:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```html
+<section>
+  <div>
+    <h3>Default: en-US</h3>
+    <p>Today is {{today | date}}</p>
+    <p>Or if you prefer, {{today | date:'fullDate' }}</p>
+    <p>The time is {{today | date:'h:mm a z'}}</p>
+  </div>
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  <div>
+    <h3>Custom: pt-BR</h3>
+    <p>Hoje é {{hoje |  amDateFormat:'LL'  }}</p>
+    <p>Ou se preferir, {{hoje | amDateFormat:'dddd, d MMMM, y'}}</p>
+    <p>A hora é {{hoje | amDateFormat:'HH:mm Z'}}</p>
+  </div>
+</section>
+```
+
+
+## Referências
+* [angular2-moment](https://www.npmjs.com/package/angular2-moment)
+* [ngx-moment](https://github.com/urish/ngx-moment)
+* [momentjs](https://momentjs.com/docs/#/displaying/calendar-time/)
+
+
+#
+
+
+![](src/assets/face-notebook_300x292.jpg)
+
+
+
+
+

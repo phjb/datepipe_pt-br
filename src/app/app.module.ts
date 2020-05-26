@@ -2,15 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { DatepipeComponent } from './datepipe/datepipe.component';
+
+import { MomentModule } from 'angular2-moment';
+import 'moment/locale/pt-br';
+
+
 
 @NgModule({
-  declarations: [
-    AppComponent
+   declarations: [
+      AppComponent,
+      DatepipeComponent
+   ],
+   imports: [
+      BrowserModule,
+      MomentModule
+
+   ],
+   providers: [
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
